@@ -46,10 +46,10 @@ exports.handler = function(event, context, callback) {
         path: `/v1/users/self/media/recent/?${stringify(params)}`
     })
         .then(data => {
+            const next_max_id = (data.pagination||{}).next_max_id || null;
             if (config.transform) {
                 data = config.transform(data.data);
             }
-            next_max_id = (data.pagination||{}).next_max_id || null;
             callback(null, { data, next_max_id });
         })
         .catch(err => {
