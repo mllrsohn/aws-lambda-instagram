@@ -38,7 +38,7 @@ exports.handler = function(event, context, callback) {
     }
 
     if (context.count) {
-        context.count = context.count;
+        params.count = context.count;
     }
 
     request({
